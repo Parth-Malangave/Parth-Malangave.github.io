@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parth Malangave – AI agents and Python backends</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f5f7; --ink:#15212b; --muted:#53636f; --line:#d3dce2; --accent:#0d6a6a; --accent-ink:#ffffff; --node:#ffffff;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#101a21; --ink:#e6eef3; --muted:#9fb0bb; --line:#27363f; --accent:#4fc3c3; --accent-ink:#06201f; --node:#16242d; color-scheme:dark;}
+}
+:root[data-theme="dark"]{--bg:#101a21; --ink:#e6eef3; --muted:#9fb0bb; --line:#27363f; --accent:#4fc3c3; --accent-ink:#06201f; --node:#16242d; color-scheme:dark;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:56px 22px 72px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.15;margin:0}
+h1{font-size:clamp(2.6rem,9vw,4.2rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:1.5rem;font-weight:700;margin:64px 0 16px}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0 0 14px;max-width:62ch}
+.lead{font-size:1.2rem;color:var(--muted);margin-top:18px;max-width:46ch}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.links a{padding:9px 16px;border:1.5px solid var(--accent);border-radius:999px;text-decoration:none;font-weight:500}
+.links a.primary{background:var(--accent);color:var(--accent-ink)}
+.meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}
+.flow{width:100%;max-width:440px;height:auto;display:block;margin:22px 0 8px}
+.flow text{font-family:"Public Sans",system-ui,sans-serif;font-size:15px;fill:var(--ink)}
+.flow .sub{font-size:12.5px;fill:var(--muted)}
+.flow rect{fill:var(--node);stroke:var(--line);stroke-width:1.5}
+.flow .gate{stroke:var(--accent);stroke-width:2.5}
+.flow path{stroke:var(--muted);stroke-width:1.6;fill:none}
+.flow polygon{fill:var(--muted)}
+ul{padding-left:1.1em;margin:0 0 14px}
+li{margin-bottom:6px;max-width:62ch}
+.proj{padding-top:26px;margin-top:26px;border-top:1px solid var(--line)}
+dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:10px 22px}
+dt{font-weight:500}
+dd{margin:0;color:var(--muted)}
+@media (max-width:520px){dl{grid-template-columns:1fr;gap:0}dd{margin-bottom:12px}}
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Parth Malangave</h1>
+    <p class="lead">Third-year Computer Engineering student at COEP Tech. I build AI-agent systems and Python backends.</p>
+    <div class="links">
+      <a class="primary" href="mailto:malangavepv24.comp@coeptech.ac.in">Email me</a>
+      <a href="https://github.com/Parth-Malangave">GitHub</a>
+      <a href="https://linkedin.com/in/parth-malangave">LinkedIn</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>AgentTrust</h2>
+    <p class="meta">AI agent security gateway · Oct 2026 · Winner, DecentraHack at PCCOE Akurdi</p>
+    <p>AI agents call tools. AgentTrust decides which calls are allowed, before they run, and keeps a record nobody can quietly edit.</p>
+
+    <svg class="flow" viewBox="0 0 420 340" role="img" aria-label="An AI agent sends a tool call to the AgentTrust gateway, which checks the JWT and policy. Allowed calls reach the tool. Every decision is written to a blockchain audit log.">
+      <rect x="130" y="8" width="160" height="54" rx="8"/>
+      <text x="210" y="31" text-anchor="middle">AI agent</text>
+      <text class="sub" x="210" y="50" text-anchor="middle">LLM tool call</text>
+
+      <path d="M210 62 V112"/><polygon points="203,108 217,108 210,120"/>
+
+      <rect class="gate" x="70" y="120" width="280" height="76" rx="8"/>
+      <text x="210" y="147" text-anchor="middle" style="font-weight:500">AgentTrust gateway</text>
+      <text class="sub" x="210" y="168" text-anchor="middle">JWT check · runtime policy · revocation</text>
+      <text class="sub" x="210" y="185" text-anchor="middle">allow or block</text>
+
+      <path d="M130 196 V252"/><polygon points="123,248 137,248 130,260"/>
+      <path d="M290 196 V252"/><polygon points="283,248 297,248 290,260"/>
+
+      <rect x="40" y="260" width="180" height="62" rx="8"/>
+      <text x="130" y="285" text-anchor="middle">Tool runs</text>
+      <text class="sub" x="130" y="304" text-anchor="middle">only if allowed</text>
+
+      <rect x="240" y="260" width="170" height="62" rx="8"/>
+      <text x="325" y="285" text-anchor="middle">Audit log</text>
+      <text class="sub" x="325" y="304" text-anchor="middle">EVM smart contract</text>
+    </svg>
+
+    <ul>
+      <li>Runtime authorization policies decide which tool calls an agent may make.</li>
+      <li>JWT authentication and credential revocation cut off access as soon as it is withdrawn.</li>
+      <li>Every security decision is written to an EVM smart contract, so anyone can verify the log.</li>
+      <li>Tested with a live LLM through its API, with the model’s tool calls passing through the gateway.</li>
+    </ul>
+    <p class="meta">Python, FastAPI, JWT, Solidity, Hardhat, EVM blockchain</p>
+  </section>
+
+  <section>
+    <h2>Other projects</h2>
+    <div class="proj" style="border-top:0;padding-top:0;margin-top:0">
+      <h3>Project Management System</h3>
+      <p class="meta">MERN · Jun 2026 – present</p>
+      <p>A full-stack platform for tracking tasks, assigning roles and working together on projects. Built with REST APIs and MongoDB data models for projects, tasks and users.</p>
+    </div>
+    <div class="proj">
+      <h3>Terminal Emulator in C</h3>
+      <p class="meta">C · Data structures and algorithms · May 2026</p>
+      <p>A Unix-like filesystem simulated with a left-child/right-sibling tree. Supports <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code>, <code>rm</code> and <code>rmdir</code>, with custom absolute and relative path resolution.</p>
+    </div>
+    <p style="margin-top:26px"><a href="https://github.com/Parth-Malangave">See the code on GitHub</a></p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl>
+      <dt>LLMs and agents</dt><dd>LLM API integration, agent tool use, tool-call authorization</dd>
+      <dt>Backend</dt><dd>Python, FastAPI, REST APIs, JWT, Node.js, Express.js</dd>
+      <dt>Data</dt><dd>SQL, DBMS concepts, MongoDB</dd>
+      <dt>Languages</dt><dd>Python, C, C++, Java, JavaScript</dd>
+      <dt>Tools</dt><dd>Git, GitHub, React.js, Tailwind CSS, Solidity, Hardhat</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Highlights</h2>
+    <ul>
+      <li>Winner, DecentraHack at PCCOE Akurdi, Oct 2026.</li>
+      <li>3rd rank, MindSpark Code Junkie at COEP Tech, Oct 2025.</li>
+      <li>Completed the LeetCode SQL 50 study plan.</li>
+      <li>B.Tech Computer Engineering, COEP Tech, CGPA 8.45.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Open to AI and backend internships. <a href="mailto:malangavepv24.comp@coeptech.ac.in">malangavepv24.comp@coeptech.ac.in</a>
+  </footer>
+</main>
+</body>
+</html>
